@@ -1,13 +1,12 @@
 from abc import *
 
 class UpperSection(metaclass=ABCMeta):
-
     @abstractmethod
-    def countDice(self):
+    def getScore(self, scoretype):
         pass
 
-    @abstractmethod
-    def score(self):
-        pass    
 
+    @abstractmethod
+    def findMax(self):
+        pass
 

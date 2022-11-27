@@ -1,82 +1,109 @@
-# 박태우
+from enum import Enum
+
+class TopScore(Enum):
+    Ace = 1
+    Twos = 2        #해당하는 주사위 눈 *  주사위 갯수이므로, enum 사용
+    Threes = 3
+    Fours = 4
+    Fives = 5
+    Sixes = 6
+
 
 from upper import UpperSection
 
 class UpperScores(UpperSection):
+    maxScore = 0
 
-    def __init__(self,resultList):
+    def __init__(self, resultList, score=0):
         self.resultList = resultList
 
-    # 족보에 일치하는 주사위 개수
-    def countDice(self,count,num):
-        self.count = count
-        self.num = num
-        for i in self.resultList:
-            if i == num:
-                self.count +=1
-        return self.count 
 
-    # 족보의 점수 
-    def score(self,num):
-        self.num = num
-        return self.count*num
+    #해당하는 주사위 눈 *  주사위 갯수이므로, enum 사용
+    def getScore(self, scoretype):
 
-## 아래는 족보별
-# 원래는 각각 스크립트 파일로 모듈화 했었는데
-# 폴더 import 하는 방식할지 말지 의논 필요?
-# 동일한 내용 족보별 스크립트 파일 만들어 놓았습니다
+        return sum([v for v in self.resultList if v == scoretype])
+
+    def findMax(self):
+        if self.score > 1:
+            if self.score > super().maxScore:
+                super().maxScore = self.score
+
+
+
+
+#다형성: polymorphism: getScore에 어떤 TopScore이 들어가느냐에 따라 함수가 다르게 동작함
 
 class Ace(UpperScores):
 
-    def __init__(self,resultList):
-        super().__init__(resultList)
 
-    def congrats(self):
-        print(f' Ace 족보로 {self.score(1)}점 획득!!')
+    def __init__(self, resultList, score=0):
+        super().__init__(resultList)
+        self.score = self.getScore(TopScore.Ace)
+
+    def findMax(self):
+        super().findMax()
+        if self.score > 1:
+            print(f"축하합니다! 'Ace'족보로 {self.score}점 획득하셨습니다!\n")
 
 
 class Two(UpperScores):
 
-    def __init__(self,resultList):
+    def __init__(self, resultList, score=0):
         super().__init__(resultList)
+        self.score = self.getScore(TopScore.Twos)
 
-    def congrats(self):
-        print(f' Two 족보로 {self.score(2)}점 획득!!')
+    def findMax(self):
+        super().findMax()
+        if self.score > 1:
+            print(f"축하합니다! 'Two'족보로 {self.score}점 획득하셨습니다!\n")
 
 
 class Three(UpperScores):
 
-    def __init__(self,resultList):
+    def __init__(self, resultList, score=0):
         super().__init__(resultList)
+        self.score = self.getScore(TopScore.Threes)
 
-    def congrats(self):
-        print(f' Three 족보로 {self.score(3)}점 획득!!')
+    def findMax(self):
+        super().findMax()
+        if self.score > 1:
+            print(f"축하합니다! 'Three'족보로 {self.score}점 획득하셨습니다!\n")
 
 
 class Four(UpperScores):
 
-    def __init__(self,resultList):
+    def __init__(self, resultList, score=0):
         super().__init__(resultList)
+        self.score = self.getScore(TopScore.Fours)
 
-    def congrats(self):
-        print(f' Four 족보로 {self.score(4)}점 획득!!')
+        def findMax(self):
+            super().findMax()
+            if self.score > 1:
+                print(f"축하합니다! 'Four'족보로 {self.score}점 획득하셨습니다!\n")
 
 
 class Five(UpperScores):
 
-    def __init__(self,resultList):
+    def __init__(self, resultList, score=0):
         super().__init__(resultList)
+        self.score = self.getScore(TopScore.Fives)
 
-    def congrats(self):
-        print(f' Five 족보로 {self.score(5)}점 획득!!')
+
+    def findMax(self):
+        super().findMax()
+        if self.score > 1:
+            print(f"축하합니다! 'Five'족보로 {self.score}점 획득하셨습니다!\n")
 
 
 class Six(UpperScores):
 
-    def __init__(self,resultList):
+    def __init__(self, resultList, score=0):
         super().__init__(resultList)
+        self.score = self.getScore(TopScore.Sixes)
 
-    def congrats(self):
-        print(f' Six 족보로 {self.score(6)}점 획득!!')
+    def findMax(self):
+        super().findMax()
+        if self.score > 1:
+            print(f"축하합니다! 'Six'족보로 {self.score}점 획득하셨습니다!\n")
 
 
