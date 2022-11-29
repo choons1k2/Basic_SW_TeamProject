@@ -63,7 +63,7 @@ class Choice(LowerScores):
 
 #================================================================
 
-# 4개 같을 때 >> 모든 눈의 합
+# 4개 같을 때 >> 모든 눈의 합 + 5
 
 class FourOfaKind(LowerScores):
 
@@ -83,7 +83,7 @@ class FourOfaKind(LowerScores):
 
     def getScore(self):
         if 4 in super().countTheSame(self.resultList):
-            return sum([v for v in self.resultList])
+            return sum([v for v in self.resultList]) + 5
         else:
             return 0
 
@@ -95,7 +95,7 @@ class FourOfaKind(LowerScores):
 
 #=================================================================
 
-# 3개, 2개 같을 때 >> 모든 눈의 합
+# 3개, 2개 같을 때 >> 모든 눈의 합 + 5
 
 class FullHouse(LowerScores):
 
@@ -115,7 +115,7 @@ class FullHouse(LowerScores):
 
     def getScore(self):
         if 3 in super().countTheSame(self.resultList) and 2 in super().countTheSame(self.resultList):
-            return sum([v for v in self.resultList])
+            return sum([v for v in self.resultList]) + 5
         
         else:
             return 0
