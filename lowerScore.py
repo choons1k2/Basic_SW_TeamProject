@@ -211,7 +211,7 @@ class LargeStraight(LowerScores):
 # =================================================================
 
 # 전부 같은 숫자 (5개) , 50점
-class Yatch(LowerScores):
+class Yacht(LowerScores):
 
     def __init__(self,resultList,score=0):
         super().__init__(resultList)
@@ -221,7 +221,7 @@ class Yatch(LowerScores):
     def findMax(self):
         super().findMax()
         if self.score>1:
-            print(f"축하합니다! 'Yatch'족보로 {self.score}점 획득하셨습니다!\n") 
+            print(f"축하합니다! 'Yacht'족보로 {self.score}점 획득하셨습니다!\n") 
 
     def countTheSame(self,resultList):
         super().countTheSame(self.resultList)
@@ -235,5 +235,5 @@ class Yatch(LowerScores):
         
 
 ##sample = [1,1,1,1,1]
-##a = Yatch(sample)
+##a = Yacht(sample)
 ##print(a.getScore())
