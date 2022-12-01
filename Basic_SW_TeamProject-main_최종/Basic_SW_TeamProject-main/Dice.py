@@ -6,7 +6,7 @@ class Dice:
 
     #5개 주사위를 던지는 method
     @staticmethod
-    def throwDice(self, diceList):
+    def throwDice(diceList):
         for i in range(5):
             number = random.randrange(1, 7)
             diceList.append(number)
@@ -21,7 +21,7 @@ class Dice:
 
     #다시 던질 주사위를 고르는 method
     @staticmethod
-    def chooseDice(self, diceList):
+    def chooseDice(diceList):
         throwAgain = input("몇번째 주사위를 다시 던질까요? (띄어쓰기로 구분, 던지지 않으려면 0 입력): ")
 
         if throwAgain == '0':
@@ -34,7 +34,7 @@ class Dice:
             throwAgain = list(map(int, throwAgain.split()))
 
             for i in throwAgain:
-                diceList[i+1] = random.randrange(1, 7)
+                diceList[i-1] = random.randrange(1, 7)
 
             print(f'결과: {diceList}')
             print('\n')

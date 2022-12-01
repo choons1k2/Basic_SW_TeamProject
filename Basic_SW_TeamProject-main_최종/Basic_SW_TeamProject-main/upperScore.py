@@ -1,5 +1,7 @@
 from enum import Enum
 
+maxScore = 0
+
 class TopScore(Enum):
     Ace = 1
     Twos = 2        #해당하는 주사위 눈 *  주사위 갯수이므로, enum 사용
@@ -12,7 +14,7 @@ class TopScore(Enum):
 from upper import UpperSection
 
 class UpperScores(UpperSection):
-    maxScore = 0
+
 
     def __init__(self, resultList, score=0):
         self.resultList = resultList
@@ -21,12 +23,13 @@ class UpperScores(UpperSection):
     #해당하는 주사위 눈 *  주사위 갯수이므로, enum 사용
     def getScore(self, scoretype):
 
-        return sum([v for v in self.resultList if v == scoretype])
+        self.score = sum([v for v in self.resultList if v == scoretype])
 
     def findMax(self):
+        global maxScore
         if self.score > 1:
-            if self.score > super().maxScore:
-                super().maxScore = self.score
+            if self.score > maxScore:
+                maxScore = self.score
 
 
 
@@ -34,11 +37,11 @@ class UpperScores(UpperSection):
 #다형성: polymorphism: getScore에 어떤 TopScore이 들어가느냐에 따라 함수가 다르게 동작함
 
 class Ace(UpperScores):
-    super().maxScore
 
-    def __init__(self, resultList, score=0):
+
+    def __init__(self, resultList):
         super().__init__(resultList)
-        self.score = self.getScore(TopScore.Ace)
+        super().getScore(TopScore.Ace)
 
     def findMax(self):
         super().findMax()
@@ -47,11 +50,11 @@ class Ace(UpperScores):
 
 
 class Two(UpperScores):
-    super().maxScore
 
-    def __init__(self, resultList, score=0):
+
+    def __init__(self, resultList):
         super().__init__(resultList)
-        self.score = self.getScore(TopScore.Twos)
+        super().getScore(TopScore.Twos)
 
     def findMax(self):
         super().findMax()
@@ -60,11 +63,11 @@ class Two(UpperScores):
 
 
 class Three(UpperScores):
-    super().maxScore
 
-    def __init__(self, resultList, score=0):
+
+    def __init__(self, resultList):
         super().__init__(resultList)
-        self.score = self.getScore(TopScore.Threes)
+        super().getScore(TopScore.Threes)
 
     def findMax(self):
         super().findMax()
@@ -73,25 +76,24 @@ class Three(UpperScores):
 
 
 class Four(UpperScores):
-    super().maxScore
 
-    def __init__(self, resultList, score=0):
+
+    def __init__(self, resultList):
         super().__init__(resultList)
-        self.score = self.getScore(TopScore.Fours)
+        super().getScore(TopScore.Fours)
 
-        def findMax(self):
-            super().findMax()
-            if self.score > 1:
-                print(f"축하합니다! 'Four'족보로 {self.score}점 획득하셨습니다!\n")
+    def findMax(self):
+        super().findMax()
+        if self.score > 1:
+            print(f"축하합니다! 'Four'족보로 {self.score}점 획득하셨습니다!\n")
 
 
 class Five(UpperScores):
-    super().maxScore
 
-    def __init__(self, resultList, score=0):
+
+    def __init__(self, resultList):
         super().__init__(resultList)
-        self.score = self.getScore(TopScore.Fives)
-
+        super().getScore(TopScore.Fives)
 
     def findMax(self):
         super().findMax()
@@ -100,11 +102,11 @@ class Five(UpperScores):
 
 
 class Six(UpperScores):
-    super().maxScore
 
-    def __init__(self, resultList, score=0):
+
+    def __init__(self, resultList):
         super().__init__(resultList)
-        self.score = self.getScore(TopScore.Sixes)
+        super().getScore(TopScore.Sixes)
 
     def findMax(self):
         super().findMax()

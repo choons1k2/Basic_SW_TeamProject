@@ -1,22 +1,25 @@
 from upper import UpperSection
 
+maxScore = 0
+
 class LowerScores(UpperSection):
-    maxScore = 0
+
     
     def __init__(self,resultList,score=0):
         self.resultList = resultList
 
     def findMax(self):
         if self.score >1 :
-            if self.score > super().maxScore:
-                super().maxScore = self.score
+            global maxScore
+            if self.score > maxScore:
+                maxScore = self.score
 
     # 재정의
     def getScore(self):
         return sum([v for v in self.resultList])
 
     #동일한 요소 개수 구하기
-    def countTheSame(self,resultList):
+    def countTheSame(self, resultList):
         
         counter = []
 
@@ -45,7 +48,7 @@ class LowerScores(UpperSection):
 
 #모든 눈의 합
 class Choice(LowerScores):
-    super().maxScore
+
 
     def __init__(self,resultList,score=0):
         super().__init__(resultList)
@@ -68,7 +71,7 @@ class Choice(LowerScores):
 
 class FourOfaKind(LowerScores):
 
-    super().maxScore
+
 
     def __init__(self,resultList,score=0):
         super().__init__(resultList)
@@ -101,7 +104,6 @@ class FourOfaKind(LowerScores):
 # 3개, 2개 같을 때 >> 모든 눈의 합 + 5
 
 class FullHouse(LowerScores):
-    super().maxScore
 
     def __init__(self,resultList,score=0):
         super().__init__(resultList)
@@ -137,7 +139,7 @@ class FullHouse(LowerScores):
 
 class SmallStraight(LowerScores):
 
-    super().maxScore
+
 
     def __init__(self,resultList,score=0):
         super().__init__(resultList)
@@ -181,7 +183,6 @@ class SmallStraight(LowerScores):
 #연속된 4개의 수 , 30점
     
 class LargeStraight(LowerScores):
-    super().maxScore
 
     def __init__(self,resultList,score=0):
         super().__init__(resultList)
@@ -219,7 +220,7 @@ class LargeStraight(LowerScores):
 
 # 전부 같은 숫자 (5개) , 50점
 class Yacht(LowerScores):
-    super().maxScore
+
 
     def __init__(self,resultList,score=0):
         super().__init__(resultList)
