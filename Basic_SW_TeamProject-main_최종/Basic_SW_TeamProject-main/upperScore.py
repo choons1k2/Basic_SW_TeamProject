@@ -2,25 +2,19 @@ from enum import Enum
 
 maxScore = 0
 
-class TopScore(Enum):
-    Ace = 1
-    Twos = 2        #해당하는 주사위 눈 *  주사위 갯수이므로, enum 사용
-    Threes = 3
-    Fours = 4
-    Fives = 5
-    Sixes = 6
 
 
-from upper import UpperSection
 
-class UpperScores(UpperSection):
+from abstractSection import Section
+
+class UpperScores(Section):
 
 
     def __init__(self, resultList, score=0):
         self.resultList = resultList
 
 
-    #해당하는 주사위 눈 *  주사위 갯수이므로, enum 사용
+
     def getScore(self, scoretype):
 
         self.score = sum([v for v in self.resultList if v == scoretype])
@@ -41,10 +35,11 @@ class Ace(UpperScores):
 
     def __init__(self, resultList):
         super().__init__(resultList)
-        super().getScore(TopScore.Ace)
+        super().getScore(1)
 
     def findMax(self):
         super().findMax()
+        #족보를 만족하는 경우 무조건 메시지 출력
         if self.score > 1:
             print(f"축하합니다! 'Ace'족보로 {self.score}점 획득하셨습니다!\n")
 
@@ -54,7 +49,7 @@ class Two(UpperScores):
 
     def __init__(self, resultList):
         super().__init__(resultList)
-        super().getScore(TopScore.Twos)
+        super().getScore(2)
 
     def findMax(self):
         super().findMax()
@@ -67,7 +62,7 @@ class Three(UpperScores):
 
     def __init__(self, resultList):
         super().__init__(resultList)
-        super().getScore(TopScore.Threes)
+        super().getScore(3)
 
     def findMax(self):
         super().findMax()
@@ -80,7 +75,7 @@ class Four(UpperScores):
 
     def __init__(self, resultList):
         super().__init__(resultList)
-        super().getScore(TopScore.Fours)
+        super().getScore(4)
 
     def findMax(self):
         super().findMax()
@@ -93,7 +88,7 @@ class Five(UpperScores):
 
     def __init__(self, resultList):
         super().__init__(resultList)
-        super().getScore(TopScore.Fives)
+        super().getScore(5)
 
     def findMax(self):
         super().findMax()
@@ -106,7 +101,7 @@ class Six(UpperScores):
 
     def __init__(self, resultList):
         super().__init__(resultList)
-        super().getScore(TopScore.Sixes)
+        super().getScore(6)
 
     def findMax(self):
         super().findMax()

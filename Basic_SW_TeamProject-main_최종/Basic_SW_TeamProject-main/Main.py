@@ -83,8 +83,8 @@ for i in range(8):
     #상하단 최고점 판단 및 비교
     player1Tmp = totalMax(DiceList1)
 
-    #전역변수 초기화
-    upperScore.maxScore=0
+    #전역변수 초기화 #상단최고점, 하단최고점 각각 따지는데 사용됨 - 점수계산 후 필수적으로 초기화
+    upperScore.maxScore=0 
     lowerScore.maxScore=0
 
     #주사위는 2번까지 다시 던질 수 있음
@@ -106,6 +106,7 @@ for i in range(8):
     os.system('pause')
     os.system('cls')
 
+    print("\n플레이어2의 차례입니다.")
     #Player2의 주사위
     DiceList2 = list()
     DiceList1 = Dice.throwDice(DiceList2)

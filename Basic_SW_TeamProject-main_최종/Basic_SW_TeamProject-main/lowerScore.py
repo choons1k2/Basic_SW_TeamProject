@@ -1,8 +1,8 @@
-from upper import UpperSection
+from abstractSection import Section
 
 maxScore = 0
 
-class LowerScores(UpperSection):
+class LowerScores(Section):
 
     
     def __init__(self,resultList,score=0):
